@@ -1,12 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/conta.css">
 </head>
 <body>
-    <h1>BEM VINDO <%= usuario.firstname %> <%= usuario.lastname %></h1>
+    <h1>BEM VINDO <%= meuUsuario.firstname %> <%= meuUsuario.lastname %></h1>
+    <h2>Seu ID: <span><%= meuUsuario.id %></span></h2>
+    <main>
+        <form action="" autocomplete="off">
+            <label for="buscar"> busque alguem para fazer amizade pelo id
+                <br>
+                <input type="text" name="user" id="buscar" class="input">
+                <div id="listaNomes">
 
+                </div>
+            </label>
+        </form>
+    </main>
+    <script>
+
+        let listaNomes = document.querySelector('#listaNomes')
+
+        array = []
+        
+        let id = document.querySelector('span').innerHTML
+        let endpoint = "http://localhost:8081/api/"+id
+
+        fetch(endpoint).then(res=>{
+            return res.json()
+        })
+        .then(data=>{
+                
+                data.forEach(element => {
+
+                    let div = document.createElement('div')
+                    div.textContent = element.firstname
+                    listaNomes.appendChild(div)
+                    
+                })
+
+            })
+        .catch((error) => {
+            console.error('Erro ao buscar dados do servidor:', error)
+        })
+
+    </script>
 </body>
 </html>

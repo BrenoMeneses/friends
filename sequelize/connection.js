@@ -13,5 +13,6 @@ sequelize.authenticate().then(()=>{
 
 module.exports = {
     sequelize: sequelize,
-    DataTypes: Sequelize.DataTypes
+    DataTypes: Sequelize.DataTypes,
+    QueryTypes: Sequelize.QueryTypes 
 }

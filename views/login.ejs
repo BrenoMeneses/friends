@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/home.css">
+</head>
+<body>
+    <main>
+        <p align="center">caso já tenha uma conta</p>
+        <form action="/login" method="post" class="form">
+            <label>
+                <input required="" type="email" class="input" name="email">
+                <span>Email</span>
+            </label>
+            <label>
+                <input required="" type="password" class="input" name="senha">
+                <span>Password</span>
+            </label>
+            <p align="center"><%= errLogin %></p>
+            <button class="submit">Submit</button>
+        </form>
+    </main>
+</body>
+</html>
