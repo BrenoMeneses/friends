@@ -1,3 +1,27 @@
 .input{
     margin-top: 5px;
+    width: 200px;
+}
+
+#listaNomes{
+    background-color: rgb(175, 175, 175);
+    width: 200px;
+}
+
+.linkAdicionar{
+    font-size: smaller;
+    color: black;
+    text-decoration: none;
+}
+
+.linkAdicionar:hover{
+    color: coral;
+}
+
+.nomeLI{
+    border-bottom: 1px solid;
+    margin-top: 2px;
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
 }

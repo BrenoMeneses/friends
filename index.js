@@ -95,7 +95,7 @@ app.get('/api/:id', async (req, res)=>{
     let id = req.params.id
 
     let data = await sequelize.query('SELECT * from users WHERE id <> '+id, {type:QueryTypes.SELECT})
-    console.log(data)
+
     return res.json(data)
 
 })
