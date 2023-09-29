@@ -1,3 +1,18 @@
+*{
+    list-style: none;
+}
+
+body{
+    display: flex;
+    font-family: sans-serif;
+}
+
+main{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
 .input{
     margin-top: 5px;
     width: 200px;

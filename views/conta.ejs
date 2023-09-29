@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/conta.css">
+    <link rel="stylesheet" href="/css/conta.css">
 </head>
 <body>
-    <h1>BEM VINDO <%= meuUsuario.firstname %> <%= meuUsuario.lastname %></h1>
-    <h2>Seu ID: <span><%= meuUsuario.id %></span></h2>
-    <main>
+    <main>    
+        <h1>BEM VINDO <%= meuUsuario.firstname %> <%= meuUsuario.lastname %></h1>
+        <h2>Seu ID: <span><%= meuUsuario.id %></span></h2>
         <form action="" autocomplete="off">
             <label for="buscar"> busque alguem para fazer amizade pelo id
                 <br>
@@ -20,70 +20,16 @@
             </label>
         </form>
     </main>
-    <script>
+    <main>
+        <h2>lista de amigos</h2>
 
-        let listaNomes = document.querySelector('#listaNomes')
-        let inputBusca = document.querySelector('#buscar')
-
-        let arrayID = []
-        
-        let id = document.querySelector('span').innerHTML
-        let endpoint = "http://localhost:8081/api/"+id
-
-        fetch(endpoint).then(res=>{
-            return res.json()
-        }).then(data=>{
-                
-                data.forEach(element => {
-
-                    arrayID.push({firstname: element.firstname, id: element.id})
-
-                })
-
-            }).catch((error) => {console.error(error)})
-
-        inputBusca.addEventListener('input', (e)=>{
-
-            listaNomes.style.display = "block"
-
-            listaNomes.innerHTML = ""
-
-
-            let users = arrayID.filter((element)=>{ 
-                return element.id == inputBusca.value || element.firstname.toLowerCase().includes(inputBusca.value.toLowerCase())
-            })
-
-            users.forEach(element => {
-                getListaNomes(element.firstname)
-            })
-
-            if(users.length === 0){
-                listaNomes.innerHTML = "nenhum usuario encontrado"
-            }
-        })
-
-        inputBusca.addEventListener('blur', (e)=>{
-            listaNomes.style.display = "none"
-        })
-
-        inputBusca.addEventListener('focus', (e)=>{
-            listaNomes.style.display = "block"
-        })
-
-        function getListaNomes(nome){
-            let div = document.createElement('div')
-                div.textContent = nome+"  "
-                div.classList.add("nomeLI")
-
-                let a = document.createElement('a')
-                a.classList.add("linkAdicionar")
-                a.textContent = "adicionar"
-                a.href = "/"
-                
-                div.appendChild(a)
-                listaNomes.appendChild(div)
-        }
-
-    </script>
+        <h2>lista de convites</h2>
+        <ul>
+            <% meuUsuarioConvites.forEach((user)=>{ %>
+            <li> convite para <%= user.nome %> - statsu: <%= user.status %> </li>
+            <% }) %>
+        </ul>
+    </main>
+    <script src="/js/conta.js"></script>
 </body>
 </html>
