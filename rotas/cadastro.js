@@ -7,7 +7,7 @@ cadastro.get('/', (req, res)=>{
 })
 
 cadastro.post('/', async (req, res)=>{
-    
+
     let data = req.body
 
     let usuario = await user.findOne({where: {email: data.email}})

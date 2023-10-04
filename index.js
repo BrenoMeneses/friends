@@ -17,7 +17,7 @@ app.use('/conta', require('./rotas/conta'))
 app.use('/login', require('./rotas/login'))
 app.use('/login', require('./rotas/login'))
 app.use('/friendRequest', require('./rotas/friendsRequest'))
-app.use('/api', require('./rotas/api'))
+app.use('/user', require('./rotas/api'))
 
 //rodando o servidor na porta 8081 ===================================================================================
 app.listen(8081, ()=>{

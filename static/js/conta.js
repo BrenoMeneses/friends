@@ -4,14 +4,13 @@ let id = document.querySelector('span').innerHTML
 
 let arrayID = []
 
-let endpoint = "http://localhost:8081/api/"+id
+let endpoint = "http://localhost:8081/user/api/"+id
 
 fetch(endpoint).then(res=>{
     return res.json()
 }).then(data=>{
 
         data.forEach(element => {
-
             arrayID.push({firstname: element.firstname, id: element.id})
 
         })
@@ -30,8 +29,7 @@ inputBusca.addEventListener('input', (e)=>{
         listaNomes.style.display = "none"
     }
 
-    let users = arrayID.filter((element)=>{
-        console.log(element.id, element.firstname)      
+    let users = arrayID.filter((element)=>{  
         return element.id == inputBusca.value || element.firstname.toLowerCase().includes(inputBusca.value.toLowerCase())
     })
 

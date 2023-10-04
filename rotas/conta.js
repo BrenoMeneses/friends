@@ -19,7 +19,6 @@ conta.get('/:id', async (req, res)=>{
 
             let reciverId = meuUsuarioConvites[i].reciverId
             let nomes = await user.findOne({where: {id: reciverId}})
-            console.log(nomes.firstname)
 
             let status = meuUsuarioConvites[i].status
 
@@ -29,7 +28,6 @@ conta.get('/:id', async (req, res)=>{
             })
 
         }
-        console.log(array)
 
         res.render('conta', {meuUsuario: meuUsuario, meuUsuarioConvites: array})
 
