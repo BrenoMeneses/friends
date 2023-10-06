@@ -23,12 +23,11 @@
     <main>
         <h2>lista de amigos</h2>
 
-        <h2>lista de convites</h2>
-        <ul>
-            <% meuUsuarioConvites.forEach((user)=>{ %>
-            <li> convite para <%= user.nome %> - statsu: <%= user.status %> </li>
-            <% }) %>
-        </ul>
+        <h2>convites enviados</h2>
+        <ul id="listaConvitesEnviados"></ul>
+
+        <h2>convites recebidos</h2>
+        <ul id="listaConvitesRecebidos"></ul>
     </main>
     <script src="/js/conta.js"></script>
 </body>

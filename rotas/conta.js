@@ -11,25 +11,9 @@ conta.get('/:id', async (req, res)=>{
         res.send("usuario nao encontrado")
     }else{
 
-        let array = []
-
         let meuUsuarioConvites = await friendsRequest.findAll({where: {senderId: id}})
 
-        for(let i=0; i<meuUsuarioConvites.length; i++){
-
-            let reciverId = meuUsuarioConvites[i].reciverId
-            let nomes = await user.findOne({where: {id: reciverId}})
-
-            let status = meuUsuarioConvites[i].status
-
-            array.push({
-                nome: nomes.firstname,
-                status: status
-            })
-
-        }
-
-        res.render('conta', {meuUsuario: meuUsuario, meuUsuarioConvites: array})
+        res.render('conta', {meuUsuario: meuUsuario})
 
     }
 

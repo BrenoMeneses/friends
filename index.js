@@ -18,8 +18,9 @@ app.use('/login', require('./rotas/login'))
 app.use('/login', require('./rotas/login'))
 app.use('/friendRequest', require('./rotas/friendsRequest'))
 app.use('/user', require('./rotas/api'))
+app.use('/friendship', require('./rotas/friendship'))
 
 //rodando o servidor na porta 8081 ===================================================================================
-app.listen(8081, ()=>{
+app.listen(8081, () => {
     console.log("run in https://localhost:8081")
 })
