@@ -48,11 +48,15 @@ fetch("http://localhost:8081/friendRequest/api/getEnviado/" + id).then(res => {
 }).then(data => {
 
     data.forEach(element => {
-        let convitesEnviados = document.querySelector('#listaConvitesEnviados')
 
-        let li = document.createElement('li')
-        li.textContent = `convite para ${element.firstname} - ${element.status}`
-        convitesEnviados.appendChild(li)
+        if(element.status === "pendente"){
+            let convitesEnviados = document.querySelector('#listaConvitesEnviados')
+
+            let li = document.createElement('li')
+            li.textContent = `convite para ${element.firstname} - ${element.status}`
+            convitesEnviados.appendChild(li)
+        }
+
 
     })
 
@@ -64,22 +68,43 @@ fetch("http://localhost:8081/friendRequest/api/getRecebido/" + id).then(res => {
 }).then(data => {
 
     data.forEach(element => {
-        console.log(element.senderId)
-        let convitesEnviados = document.querySelector('#listaConvitesRecebidos')
+        
+        if(element.status === "pendente"){
+            let convitesEnviados = document.querySelector('#listaConvitesRecebidos')
+
+            let li = document.createElement('li')
+    
+            let btnAceitar = document.createElement('a')
+            btnAceitar.textContent = " aceitar "
+            btnAceitar.href = `/friendship/createFriendship/${element.senderId}/${id}/aceito`
+    
+            let btnRecusar = document.createElement('a')
+            btnRecusar.textContent = " recusar "
+            btnRecusar.href = `/friendship/createFriendship/${element.senderId}/${id}/recusado`
+    
+            li.textContent = `convite de ${element.firstname} - ${element.status} `
+            li.appendChild(btnAceitar)
+            li.appendChild(btnRecusar)
+    
+            convitesEnviados.appendChild(li)
+        }
+
+    })
+
+}).catch((error) => { console.error(error) })
+
+//fetch para pegar as amizades aceitas do usuário =================================================================================================
+fetch("http://localhost:8081/friendship/api/getFriendship/" + id).then(res => {
+    return res.json()
+}).then(data => {
+
+    data.forEach(element => {
+
+        let convitesEnviados = document.querySelector('#listaAmigos')
 
         let li = document.createElement('li')
 
-        let btnAceitar = document.createElement('a')
-        btnAceitar.textContent = " aceitar "
-        btnAceitar.href = `/friendship/createFriendship/${element.senderId}/${id}/aceito`
-
-        let btnRecusar = document.createElement('a')
-        btnRecusar.textContent = " recusar "
-        btnRecusar.href = `/friendship/createFriendship/${element.senderId}/${id}/recusado`
-
-        li.textContent = `convite de ${element.firstname} - ${element.status} `
-        li.appendChild(btnAceitar)
-        li.appendChild(btnRecusar)
+        li.textContent = element.firstname + " " + element.lastname
 
         convitesEnviados.appendChild(li)
 
